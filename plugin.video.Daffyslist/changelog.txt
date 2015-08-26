@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 1.0 - 21/08/15
 - First stage of live release.
 
@@ -7,3 +8,10 @@
 1.0.2 - 26/08/15
 - Out of beta.
 
+=======
+[b]1.0[/b] 21/08/15
+- First stage of live release.
+
+[b]1.0[/b] 22/08/15
+- Fixed a possible Bug.
+>>>>>>> origin/master
