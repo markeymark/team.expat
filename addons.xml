@@ -8,8 +8,8 @@
         <provides>executable</provides>
   </extension>
   <extension point="xbmc.addon.metadata">
-    <summary lang="en">Team ExPat Wizard</summary>
-    <description lang="en">Easy Install for [COLOR green][B]Team[/B] eXpat[/COLOR] Builds</description>
+    <summary lang="en">Team eXpat Wizard</summary>
+    <description lang="en">Easy Build Install for [COLOR green][B]Team[/B] eXpat[/COLOR] Builds</description>
     <platform>all</platform>
   </extension>
 </addon>
@@ -48,6 +48,29 @@ Thats all Folks
     </description>
     <platform>all</platform>
   </extension>
+</addon>
+
+<addon id="plugin.video.origin" name="Origin" version="4.8.5" provider-name="lambda">
+	<requires>
+		<import addon="xbmc.python" version="2.1.0" />
+		<import addon="script.module.pyxbmct" version="1.1.4" />
+		<import addon="script.module.requests" version="1.0.0" />
+		<import addon="script.module.metahandler" optional="true" />
+		<import addon="plugin.video.youtube" optional="true" />
+	</requires>
+	<extension point="xbmc.python.pluginsource" library="default.py">
+		<provides>video</provides>
+	</extension>
+	<extension point="xbmc.service" library="service.py" start="startup" />
+	<extension point="xbmc.addon.metadata">
+		<summary lang="en">The origin of Genesis with Download</summary>
+		<description lang="en"></description>
+		<disclaimer lang="en">The author does not host or distribute any of the content displayed by this addon. The author does not have any affiliation with the content provider.</disclaimer>
+		<forum></forum>
+		<source>https://offshoregit.com/lambda81/</source>
+		<website>https://offshoregit.com/lambda81/</website>
+		<platform>all</platform>
+	</extension>
 </addon>
 
 <addon id="repository.team.expat" name="Team eXpat Repository" version="1.0.1" provider-name="Team-eXpat">

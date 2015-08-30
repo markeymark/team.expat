@@ -7,8 +7,8 @@
         <provides>executable</provides>
   </extension>
   <extension point="xbmc.addon.metadata">
-    <summary lang="en">Team ExPat Wizard</summary>
-    <description lang="en">Easy Install for [COLOR green][B]Team[/B] eXpat[/COLOR] Builds</description>
+    <summary lang="en">Team eXpat Wizard</summary>
+    <description lang="en">Easy Build Install for [COLOR green][B]Team[/B] eXpat[/COLOR] Builds</description>
     <platform>all</platform>
   </extension>
 </addon>
