@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <settings>
 	<category label="30000">
-		<setting id="appearance" type="select" label="30001" values="-|4orbs|Clean|Embossed|GOne|Metro" default="GOne" />
+		<setting id="appearance" type="select" label="30001" values="AMObox" default="AMObox" />
 		<setting id="fanart" type="bool" label="30002" default="true" />
 		<setting type="sep" />
 		<setting id="sources_timeout_beta" type="slider" label="30003" default="10" range="10,60" option="int" />
@@ -141,8 +141,8 @@
 		<setting id="furk_password" type="text" option="hidden" label="30102" default="" />
 	</category>
 	<category label="30120">
-		<setting id="movie_library" type="folder" label="30122" default="special://userdata/addon_data/plugin.video.genesis/Movies" />
-		<setting id="tv_library" type="folder" label="30123" default="special://userdata/addon_data/plugin.video.genesis/TVShows" />
+		<setting id="movie_library" type="folder" label="30122" default="special://userdata/addon_data/plugin.video.origin/Movies" />
+		<setting id="tv_library" type="folder" label="30123" default="special://userdata/addon_data/plugin.video.origin/TVShows" />
 		<setting type="lsep" label="30121" />
 		<setting type="sep" />
 		<setting id="service_update" type="bool" label="30124" default="true" />
