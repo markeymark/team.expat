@@ -12,3 +12,6 @@
 
 1.0.4 - 13/09/15
 - Fixed a possible Bug.
+
+1.0.5 - 11/10/15
+- Fixed a possible Bug.
