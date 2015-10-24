@@ -15,7 +15,10 @@
   </extension>
 </addon>
 
-<addon id="plugin.video.Daffyslist" name="Daffyslist" version="1.0.6" provider-name="Daffyslist">
+<addon id="plugin.video.Daffyslist"
+       name="Daffyslist"
+       version="1.0.7"
+       provider-name="Daffyslist">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
 	<import addon="script.module.t0mm0.common" version="2.0.0"/>

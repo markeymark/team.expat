@@ -87,8 +87,8 @@ def makeRequest(url, headers=None):
 				
 def RHIndex():
     addon_log("RHIndex")
-    addDir('Search','Search',25,'http://www.guidestarindia.org/SiteImages/Search%20NGO%20icon.png' ,  FANART,'','','','')
-    addDir('Favorites','Favorites',4,'http://www.guidestarindia.org/SiteImages/Search%20NGO%20icon.png' ,  FANART,'','','','')
+    addDir('Search','Search',25,'http://daffyslist.com/images/addon/search.png' ,  FANART,'','','','')
+    addDir('Favorites','Favorites',4,'http://daffyslist.com/images/addon/favourites.png' ,  FANART,'','','','')
 
     getData(CIBase,'')
     xbmcplugin.endOfDirectory(int(sys.argv[1]))
