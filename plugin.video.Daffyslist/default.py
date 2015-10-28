@@ -497,10 +497,14 @@ def GetSublinks(name,url,iconimage,fanart):
     List=[]; ListU=[]; c=0
     all_videos = regex_get_all(url, 'sublink:', '#')
     for a in all_videos:
-        vurl = a.replace('sublink:','').replace('#','')
-        #print vurl, name,iconimage,
+        if 'LISTSOURCE:' in a:
+            vurl = regex_from_to(a, 'LISTSOURCE:', '::')
+            linename = regex_from_to(a, 'LISTNAME:', '::')
+        else:
+            vurl = a.replace('sublink:','').replace('#','')
+            linename = name
         if len(vurl) > 10:
-           c=c+1; List.append(name+ ' Source ['+str(c)+']'); ListU.append(vurl)
+            c=c+1; List.append(linename); ListU.append(vurl)
  
     if c==1:
         try:
@@ -872,39 +876,39 @@ def getItems(items,fanart):
                     pass
             try:
                 if len(url) > 1:
+                    
                     alt = 0
                     playlist = []
                     for i in url:
-                            if  add_playlist == "false":
+                    	if addon.getSetting('ask_playlist_items') == 'true':
+	                        if regexs:
+	                            playlist.append(i+'&regexs='+regexs)
+	                        elif  any(x in i for x in resolve_url) and  i.startswith('http'):
+	                            playlist.append(i+'&mode=19')                            
+                        else:
+                            playlist.append(i)
+                    if addon.getSetting('add_playlist') == "false":                    
+                            for i in url:
                                 alt += 1
-                                addLink(i,'%s) %s' %(alt, name.encode('utf-8', 'ignore')),thumbnail,fanArt,desc,genre,date,True,playlist,regexs,total)
-                            elif  add_playlist == "true" and  ask_playlist_items == 'true':
-                                if regexs:
-                                    playlist.append(i+'&regexs='+regexs)
-                                elif  any(x in i for x in resolve_url) and  i.startswith('http'):
-                                    playlist.append(i+'&mode=19')
-                                else:
-                                    playlist.append(i)
-                            else:
-                                playlist.append(i)
-                    if len(playlist) > 1:
-                        addLink('', name,thumbnail,fanArt,desc,genre,date,True,playlist,regexs,total)
+                                print 'ADDLINK 1'
+                                addLink(i,'%s) %s' %(alt, name.encode('utf-8', 'ignore')),thumbnail,fanArt,desc,genre,date,True,playlist,regexs,total)                            
+                    else:
+                        addLink('', name.encode('utf-8', 'ignore'),thumbnail,fanArt,desc,genre,date,True,playlist,regexs,total)
                 else:
                     if isXMLSource:
-                            if not regexs == None: #<externallink> and <regex>
-                                addDir(name.encode('utf-8'),ext_url[0].encode('utf-8'),1,thumbnail,fanart,desc,genre,date,None,'!!update',regexs,url[0].encode('utf-8'))
-                                #addLink(url[0],name.encode('utf-8', 'ignore')+  '[COLOR yellow]build XML[/COLOR]',thumbnail,fanArt,desc,genre,date,True,None,regexs,total)
-                            else:
-                                addDir(name.encode('utf-8'),ext_url[0].encode('utf-8'),1,thumbnail,fanart,desc,genre,date,None,'source',None,None)
-                                #addDir(name.encode('utf-8'),url[0].encode('utf-8'),1,thumbnail,fanart,desc,genre,date,None,'source')
+                    	addDir(name.encode('utf-8'),ext_url[0].encode('utf-8'),1,thumbnail,fanart,desc,genre,date,None,'source')
                     elif isJsonrpc:
                         addDir(name.encode('utf-8'),ext_url[0],53,thumbnail,fanart,desc,genre,date,None,'source')
-                        #xbmc.executebuiltin("Container.SetViewMode(500)")
-                    else:
+                    elif url[0].find('sublink') > 0:
+                        addDir(name.encode('utf-8'),url[0],30,thumbnail,fanArt,desc,regexs,'','','')
+                        #addDir(name.encode('utf-8'),url[0],30,thumbnail,fanart,desc,genre,date,'sublink')				
+                    else: 
                         addLink(url[0],name.encode('utf-8', 'ignore'),thumbnail,fanArt,desc,genre,date,True,None,regexs,total)
+
                     #print 'success'
             except:
                 addon_log('There was a problem adding item - '+name.encode('utf-8', 'ignore'))
+        print 'FINISH GET ITEMS *****'     
 
 def parse_regex(reg_item):
                 try:
