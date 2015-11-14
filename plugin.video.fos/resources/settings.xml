@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<settings>
+    <setting id="server" type="text" label="[COLOR yellow]Server:[/COLOR]" default="infadroid.tk"/>
+    <setting id="port" type="text" label="[COLOR yellow]Port:[/COLOR]" default="8000"/>
+    <setting id="user" type="text" label="[COLOR yellow]Username:[/COLOR]" default=""/>
+    <setting id="pass" type="text" label="[COLOR yellow]Password:[/COLOR]" default=""/>
+</settings>

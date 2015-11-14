@@ -50,6 +50,27 @@
   </extension>
 </addon>
 
+<addon id="plugin.video.fos"
+       name="Team eXpat IPTV"
+       version="1.0.0"
+       provider-name="Pipcan">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+	<import addon="script.module.requests" />
+  	<import addon="script.module.urlresolver" />
+</requires>
+  <extension point="xbmc.python.pluginsource"
+            library="default.py">
+        <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en">Developed by Pipcan</summary>
+    <language>en</language>
+    <description lang="en">Team eXpat IPTV</description>
+     <platform>all</platform>
+  </extension>
+</addon>
+
 <addon id="plugin.video.origin" name="Origin" version="4.8.6" provider-name="lambda/[COLOR blue][B]AMO[/B][/COLOR][COLOR green]box[/COLOR]">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
