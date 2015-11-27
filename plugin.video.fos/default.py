@@ -11,11 +11,20 @@ datapath = xbmc.translatePath(ADDON.getAddonInfo('profile'))
 _addon = xbmcaddon.Addon()
 _path = _addon.getAddonInfo("path")
 def CATEGORIES():
+    addDir('[COLOR green]Welcome Team eXpat[/COLOR]','','','')
     r = requests.get('http://%s:%s/playlist.php?username=%s&password=%s&m3u'%(domain,port,username,password))
     match = re.compile('EXTINF:0,(.+?)\r.(.+?)\r',re.DOTALL).findall(r.content)
     for name,url in match:
-        addDir2(name,url,10,'')
-
+        addDir2('[COLOR gold]%s[/COLOR]'%name,url,10,'')
+    addDir('[COLOR yellow]Live Streams[/COLOR]','','','')
+    url = ('http://pastebin.com/raw.php?i=2dM1k6tR')
+    r = requests.get(url)
+    match = re.compile('EXTINF:.+?,(.+?)\r\n(.+?)\r').findall(r.content)
+    for name,url in match:
+        if '———' in name:
+            addDir2('[COLOR red]%s[/COLOR]'%name,url,10,'')
+        else:
+            addDir2(name,url,10,'')
 
 def PLAYVIDEO(name,url):
         play=xbmc.Player(GetPlayerCore())

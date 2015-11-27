@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<settings>
-    <setting id="server" type="text" label="[COLOR yellow]Server:[/COLOR]" default="iptv.teamexpat.ninja"/>
-    <setting id="port" type="text" label="[COLOR yellow]Port:[/COLOR]" default="8000"/>
-    <setting id="user" type="text" label="[COLOR yellow]Username:[/COLOR]" default="Please visit: facebook.com/groups/TeameXpat"/>
-    <setting id="pass" type="text" label="[COLOR yellow]Password:[/COLOR]" default="for more info and login informations. Thanks"/>
+<settings label="Account Details">
+    <setting id="server" type="hidden" default="iptv.teamexpat.ninja"/>
+    <setting id="port" type="hidden" default="8000"/>
+	<setting id="welcome" type="text" label="[COLOR green]Please visit: facebook.com/groups/TeameXpat For The Login Details[/COLOR]"/>
+    <setting id="user" type="text" label="[B]Username:[/B]" default=""/>
+    <setting id="pass" type="text" label="[B]Password:[/B]" default=""/>
 </settings>
