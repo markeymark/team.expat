@@ -86,6 +86,7 @@ def BUILDMENU():
     match = re.compile('name="(.+?)".+?rl="(.+?)".+?mg="(.+?)".+?anart="(.+?)".+?escription="(.+?)"').findall(link)
     for name,url,iconimage,fanart,description in match:
         addDir2(name,url,90,iconimage,fanart,description)
+    xbmc.executebuiltin("Container.Refresh")
     setView('movies', 'MAIN')
 def MAINTENANCE():
 	addDir2('DELETE CACHE','url',4,ART+'deletecache.png',FANART,'')
