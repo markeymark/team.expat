@@ -82,7 +82,7 @@ def INDEX():
     
 
 def BUILDMENU():
-    link = OPEN_URL('http://amobox.site90.net/.Unlock%20the%20Power%20of%20Kodi/buildsteam.xml').replace('\n','').replace('\r','')
+    link = OPEN_URL('http://pastebin.com/raw.php?i=v6f6ub0A').replace('\n','').replace('\r','')
     match = re.compile('name="(.+?)".+?rl="(.+?)".+?mg="(.+?)".+?anart="(.+?)".+?escription="(.+?)"').findall(link)
     for name,url,iconimage,fanart,description in match:
         addDir2(name,url,90,iconimage,fanart,description)
