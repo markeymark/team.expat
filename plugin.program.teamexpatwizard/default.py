@@ -59,9 +59,9 @@ KEYMAPS      =  xbmc.translatePath(os.path.join(USERDATA,'keymaps','keyboard.xml
 USB          =  xbmc.translatePath(os.path.join(zip))
 CBPATH       =  xbmc.translatePath(os.path.join(USB,'AMObox Custom Builds',''))
 cookiepath   =  xbmc.translatePath(os.path.join(ADDON_DATA,AddonID,'cookiejar'))
-startuppath  =  xbmc.translatePath(os.path.join(ADDONS,AddonID,'startup.xml'))
+startuppath  =  xbmc.translatePath(os.path.join(ADDON_DATA,AddonID,'startup.xml'))
 tempfile     =  xbmc.translatePath(os.path.join(ADDON_DATA,AddonID,'temp.xml'))
-idfile       =  xbmc.translatePath(os.path.join(ADDONS,AddonID,'id.xml'))
+idfile       =  xbmc.translatePath(os.path.join(ADDON_DATA,AddonID,'id.xml'))
 idfiletemp   =  xbmc.translatePath(os.path.join(ADDON_DATA,AddonID,'idtemp.xml'))
 notifyart    =  xbmc.translatePath(os.path.join(ADDONS,AddonID,'resources/'))
 skin         =  xbmc.getSkinDir()
@@ -85,24 +85,25 @@ def BUILDMENU():
     link = OPEN_URL('http://pastebin.com/raw.php?i=v6f6ub0A').replace('\n','').replace('\r','')
     match = re.compile('name="(.+?)".+?rl="(.+?)".+?mg="(.+?)".+?anart="(.+?)".+?escription="(.+?)"').findall(link)
     for name,url,iconimage,fanart,description in match:
-        addDir2(name,url,90,iconimage,fanart,description)
+        addDir(name,url,90,iconimage,fanart,description)
     setView('movies', 'MAIN')
+	
 def MAINTENANCE():
-	addDir2('DELETE CACHE','url',4,ART+'deletecache.png',FANART,'')
-	addDir2('IVUE TV GUIDE RESET','url',11,ART+'ivuefix.png',FANART,'')
-	addDir2('[COLOR red][B]FRESH START[/B][/COLOR]','url',6,ART+'freshstart.png',FANART,'')
-	addDir2('DELETE PACKAGES','url',7,ART+'deletepackages.png',FANART,'')
-	addDir2('CHECK MY IP','url',31,ART+'checkmyip.png',FANART,'')
-	addDir2('FORCE REFRESH','url',32,ART+'forcerefresh.png',FANART,'Force Refresh All Repos')
-	addDir2('DELETE THUBMNAILS','url',33,ART+'deletethumbnails.png',FANART,'Only Works On Android On Windows It Deletes Your Thumnails Folder But Does Not Delete The Textures13.db')
+	addDir('DELETE CACHE','url',4,ART+'deletecache.png',FANART,'')
+	addDir('IVUE TV GUIDE RESET','url',11,ART+'ivuefix.png',FANART,'')
+	addDir('[COLOR red][B]FRESH START[/B][/COLOR]','url',6,ART+'freshstart.png',FANART,'')
+	addDir('DELETE PACKAGES','url',7,ART+'deletepackages.png',FANART,'')
+	addDir('CHECK MY IP','url',31,ART+'checkmyip.png',FANART,'')
+	addDir('FORCE REFRESH','url',32,ART+'forcerefresh.png',FANART,'Force Refresh All Repos')
+	addDir('DELETE THUBMNAILS','url',33,ART+'deletethumbnails.png',FANART,'Only Works On Android On Windows It Deletes Your Thumnails Folder But Does Not Delete The Textures13.db')
 	setView('movies', 'MAIN')
 
 
 def CBTOOLS(id):
-    addDir2('Addon Settings','settings',51,ART+'addonsettings.png',FANART,'')
-    addDir2('Backup My Content','url',60,ART+'backupmycontent.png',FANART,'')
-    addDir2('Restore My Content','url',70,ART+'restoremycontent.png',FANART,'')
-    addDir2('Additional Tools','url',80,ART+'additionaltools.png',FANART,'')
+    addDir('Addon Settings','settings',51,ART+'addonsettings.png',FANART,'')
+    addDir('Backup My Content','url',60,ART+'backupmycontent.png',FANART,'')
+    addDir('Restore My Content','url',70,ART+'restoremycontent.png',FANART,'')
+    addDir('Additional Tools','url',80,ART+'additionaltools.png',FANART,'')
 
 
 #---------------------------------------------------------------------------------------------------
@@ -1797,16 +1798,11 @@ def addDir(name,url,mode,iconimage,fanart,description):
         liz=xbmcgui.ListItem(name, iconImage="DefaultFolder.png", thumbnailImage=iconimage)
         liz.setInfo( type="Video", infoLabels={ "Title": name, "Plot": description } )
         liz.setProperty( "Fanart_Image", fanart )
-        ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz,isFolder=True)
-
-def addDir2(name,url,mode,iconimage,fanart,description):
-        u=sys.argv[0]+"?url="+urllib.quote_plus(url)+"&mode="+str(mode)+"&name="+urllib.quote_plus(name)+"&iconimage="+urllib.quote_plus(iconimage)+"&fanart="+urllib.quote_plus(fanart)+"&description="+urllib.quote_plus(description)
-        ok=True
-        liz=xbmcgui.ListItem(name, iconImage="DefaultFolder.png", thumbnailImage=iconimage)
-        liz.setInfo( type="Video", infoLabels={ "Title": name, "Plot": description } )
-        liz.setProperty( "Fanart_Image", fanart )
-        ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz,isFolder=False)
-
+        if mode==90 :
+            ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz,isFolder=False)
+        else:
+            ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz,isFolder=True)
+        return ok
 
         
                       
