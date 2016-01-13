@@ -121,7 +121,7 @@
         <import addon="xbmc.python"                 version="2.1.0"/>
 	</requires>
 	<extension point="xbmc.python.script" library="default.py">
-		<provides>executable</provides>
+
 	</extension>
 	<extension point="xbmc.addon.metadata">
 		<platform>all</platform>
@@ -132,5 +132,4 @@
 		<email>xbloodsquidx@gmail.com</email>
 	</extension>
 </addon>
-
 </addons>
