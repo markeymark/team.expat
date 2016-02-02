@@ -3,7 +3,7 @@ import xbmcgui
 import xbmcaddon
 import os
 
-ADDON        =  xbmcaddon.Addon(id='plugin.program.teamexpatwizard')
+ADDON        =  xbmcaddon.Addon(id='plugin.program.expatwiz')
 zip          =  ADDON.getSetting('zip')
 d            =  xbmcgui.Dialog()
 

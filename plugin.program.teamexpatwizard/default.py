@@ -15,10 +15,10 @@ import ntpath
 
 
 USER_AGENT = 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.9.0.3) Gecko/2008092417 Firefox/3.0.3'
-addon_id = 'plugin.program.teamexpatwizard'
+addon_id = 'plugin.program.expatwiz'
 ADDON = xbmcaddon.Addon(id=addon_id)
-AddonID='plugin.program.teamexpatwizard'
-AddonTitle="[COLOR darkgreen]Team eXpat[/COLOR] [COLOR gold]Wizard[/COLOR]"
+AddonID='plugin.program.expatwiz'
+AddonTitle="[COLOR green][B]Team[/B] eXpat[/COLOR] [COLOR cyan]Wizard[/COLOR]"
 dialog       =  xbmcgui.Dialog()
 net = Net()
 HOME         =  xbmc.translatePath('special://home/')
@@ -27,14 +27,14 @@ U = ADDON.getSetting('User')
 FANART = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id , 'fanart.jpg'))
 ICON = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'icon.png'))
 ART = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id + '/resources/art/'))
-VERSION = "3.0.5"
+VERSION = "4.0.0"
 DBPATH = xbmc.translatePath('special://database')
 TNPATH = xbmc.translatePath('special://thumbnails');
 PATH = "AMObox Wizard"            
-BASEURL = "http://amobox.pt.vu"
+BASEURL = "http://amobox.comlu.com"
 H = 'http://'
 skin         =  xbmc.getSkinDir()
-EXCLUDES     = ['plugin.program.teamexpatwizard','script.module.addon.common']
+EXCLUDES     = ['plugin.program.expatwiz','script.module.addon.common']
 zip          =  ADDON.getSetting('zip')
 ARTPATH      =  '' + os.sep
 USERDATA     =  xbmc.translatePath(os.path.join('special://home/userdata',''))
@@ -75,18 +75,27 @@ mastercopy   =  ADDON.getSetting('mastercopy')
 
 #Root menu of addon
 def INDEX():
-	addDir('[COLOR darkgreen]Team eXpat[/COLOR][COLOR gold] Builds[/COLOR]',BASEURL,20,ART+'amoboxwiz.png',FANART,'')
-	addDir('[COLOR red]MAINTENANCE[/COLOR]',BASEURL,30,ART+'maintenance.png',FANART,'')
-	addDir('[COLOR blue]Custom Build Tool[/COLOR]',BASEURL,50,ART+'cbtools.png',FANART,'')
-	addDir('[COLOR blue]FACE[/COLOR][COLOR green]BOOK[/COLOR]',BASEURL,8,ART+'facebook.jpg',FANART,'')
+	addDir('[COLOR green][B]Team[/B] eXpat[/COLOR][COLOR white] Builds[/COLOR]',BASEURL,20,ART+'amoboxwiz.png',FANART,'')
+	addDir('[COLOR darkred][B]Community[/B][/COLOR][COLOR white] Builds[/COLOR]',BASEURL,21,ART+'community.png',FANART,'')
+	addDir('[COLOR lime][B]APK[/B] STORE[/COLOR]',BASEURL,40,ART+'apkstore.png',FANART,'')
+	addDir('[COLOR yellow]MAINTENANCE[/COLOR]',BASEURL,30,ART+'maintenance.png',FANART,'')
+	addDir('[COLOR red]Custom Build Tool[/COLOR]',BASEURL,50,ART+'cbtools.png',FANART,'')
+	addDir('[COLOR blue]FACEBOOK[/COLOR]',BASEURL,8,ART+'facebook.jpg',FANART,'')
     
 
 def BUILDMENU():
-    link = OPEN_URL('http://pastebin.com/raw.php?i=v6f6ub0A').replace('\n','').replace('\r','')
+    link = OPEN_URL('http://pastebin.com/raw/W2MytrTH').replace('\n','').replace('\r','')
     match = re.compile('name="(.+?)".+?rl="(.+?)".+?mg="(.+?)".+?anart="(.+?)".+?escription="(.+?)"').findall(link)
     for name,url,iconimage,fanart,description in match:
         addDir(name,url,90,iconimage,fanart,description)
     setView('movies', 'MAIN')
+	
+def BUILDMENU2():
+    link = OPEN_URL('http://pastebin.com/raw/3QdAap5J').replace('\n','').replace('\r','')
+    match = re.compile('name="(.+?)".+?rl="(.+?)".+?mg="(.+?)".+?anart="(.+?)".+?escription="(.+?)"').findall(link)
+    for name,url,iconimage,fanart,description in match:
+        addDir(name,url,90,iconimage,fanart,description)
+    setView('movies', 'MAIN')	
 	
 def MAINTENANCE():
 	addDir('DELETE CACHE','url',4,ART+'deletecache.png',FANART,'')
@@ -105,8 +114,36 @@ def CBTOOLS(id):
     addDir('Restore My Content','url',70,ART+'restoremycontent.png',FANART,'')
     addDir('Additional Tools','url',80,ART+'additionaltools.png',FANART,'')
 
+def APKDOWNMENU():
+    link = OPEN_URL('http://pastebin.com/raw/jtmk8zuC').replace('\n','').replace('\r','')
+    match = re.compile('name="(.+?)".+?rl="(.+?)".+?mg="(.+?)".+?anart="(.+?)".+?escription="(.+?)"').findall(link)
+    for name,url,iconimage,fanart,description in match:
+        addDir(name,url,41,iconimage,fanart,description)
+    setView('movies', 'MAIN')
 
 #---------------------------------------------------------------------------------------------------
+#################################
+########## APK STORE ############
+#################################
+def APKDOWNWIZ(name,url,description):
+    path = xbmc.translatePath(os.path.join('special://home/addons','packages'))
+    dp = xbmcgui.DialogProgress()
+    dp.create("APK STORE","Downloading your app ",'', 'Please Wait')
+    lib=os.path.join(path, name+'.zip')
+    try:
+       os.remove(lib)
+    except:
+       pass
+    downloader.download(url, lib, dp)
+    addonfolder = xbmc.translatePath(os.path.join('sdcard','download'))
+    time.sleep(2)
+    dp.update(0,"", "transfering your app to the downloads folder on your device")
+    print '======================================='
+    print addonfolder
+    print '======================================='
+    extract.all(lib,addonfolder,dp)
+    dialog = xbmcgui.Dialog()
+    dialog.ok("DOWNLOAD COMPLETE ", "PLEASE EXIT KODI AND GO TO YOUR DOWNLOADS FOLDER AND INSTALL YOUR APP")
 
 
 #################################
@@ -132,7 +169,7 @@ def TextBoxes(heading,announce):
   TextBox()
 
 def facebook():
-    TextBoxes('[COLOR darkgreen]Team eXpat[/COLOR] [COLOR gold]Wizard[/COLOR]', 'Join the discussions at [COLOR blue]https://goo.gl/5IvEDf[/COLOR]')
+    TextBoxes('[COLOR blue][B]AMO[/B][/COLOR][COLOR green]box[/COLOR] [COLOR gold]Wizard[/COLOR]', 'Join the discussions at [COLOR blue]facebook.com/groups/TeameXpat[/COLOR]')
     
         
     
@@ -197,9 +234,9 @@ def COMMUNITY_BACKUP():
     if ( not vq ): return False, 0
     title = urllib.quote_plus(vq)
     backup_zip = xbmc.translatePath(os.path.join(fullbackuppath,title+'.zip'))
-    exclude_dirs_full =  ['plugin.program.teamexpatwizard']
+    exclude_dirs_full =  ['plugin.program.expatwiz']
     exclude_files_full = ["xbmc.log","xbmc.old.log","kodi.log","kodi.old.log",'.DS_Store','.setup_complete','XBMCHelper.conf']
-    exclude_dirs =  ['plugin.program.teamexpatwizard', 'cache', 'system', 'Thumbnails', "peripheral_data",'library','keymaps']
+    exclude_dirs =  ['plugin.program.expatwiz', 'cache', 'system', 'Thumbnails', "peripheral_data",'library','keymaps']
     exclude_files = ["xbmc.log","xbmc.old.log","kodi.log","kodi.old.log","Textures13.db",'.DS_Store','.setup_complete','XBMCHelper.conf', 'advancedsettings.xml']
     message_header = "Creating full backup of existing build"
     message_header2 = "Creating AMObox Custom Build"
@@ -278,7 +315,7 @@ def ARCHIVE_FILE(sourcefile, destfile):
             dp.update(int(progress),"Backing Up",'[COLOR yellow]%s[/COLOR]'%file, 'Please Wait')
             fn = os.path.join(base, file)
             if not 'temp' in dirs:
-                if not 'plugin.program.teamexpatwizard' in dirs:
+                if not 'plugin.program.expatwiz' in dirs:
                    import time
                    FORCE= '01/01/1980'
                    FILE_DATE=time.strftime('%d/%m/%Y', time.gmtime(os.path.getmtime(fn)))
@@ -308,7 +345,7 @@ def ARCHIVE_CB(sourcefile, destfile, message_header, message1, message2, message
             dp.update(int(progress),"Backing Up",'[COLOR yellow]%s[/COLOR]'%file, 'Please Wait')
             fn = os.path.join(base, file)
             if not 'temp' in dirs:
-                if not 'plugin.program.teamexpatwizard' in dirs:
+                if not 'plugin.program.expatwiz' in dirs:
                    import time
                    FORCE= '01/01/1980'
                    FILE_DATE=time.strftime('%d/%m/%Y', time.gmtime(os.path.getmtime(fn)))
@@ -412,7 +449,7 @@ def RESTORE_COMMUNITY(name,url,video,description,skins,guisettingslink):
         if ( not vq ): return False, 0
         title = urllib.quote_plus(vq)
         backup_zip = xbmc.translatePath(os.path.join(mybackuppath,title+'.zip'))
-        exclude_dirs_full =  ['plugin.program.teamexpatwizard']
+        exclude_dirs_full =  ['plugin.program.expatwiz']
         exclude_files_full = ["xbmc.log","xbmc.old.log","kodi.log","kodi.old.log",'.DS_Store','.setup_complete','XBMCHelper.conf']
         message_header = "Creating full backup of existing build"
         message1 = "Archiving..."
@@ -568,7 +605,7 @@ def RESTORE_LOCAL_COMMUNITY():
         if ( not vq ): return False, 0
         title = urllib.quote_plus(vq)
         backup_zip = xbmc.translatePath(os.path.join(mybackuppath,title+'.zip'))
-        exclude_dirs_full =  ['plugin.program.teamexpatwizard']
+        exclude_dirs_full =  ['plugin.program.expatwiz']
         exclude_files_full = ["xbmc.log","xbmc.old.log","kodi.log","kodi.old.log",'.DS_Store','.setup_complete','XBMCHelper.conf']
         message_header = "Creating full backup of existing build"
         message1 = "Archiving..."
@@ -890,7 +927,7 @@ def RESTORE_ZIP_FILE(url):
                 dp.update(int(progress),"Backing Up",'[COLOR yellow]%s[/COLOR]'%file, 'Please Wait')
                 fn = os.path.join(base, file)
                 if not 'temp' in dirs:
-                    if not 'plugin.program.teamexpatwizard' in dirs:
+                    if not 'plugin.program.expatwiz' in dirs:
                        import time
                        FORCE= '01/01/1980'
                        FILE_DATE=time.strftime('%d/%m/%Y', time.gmtime(os.path.getmtime(fn)))
@@ -995,7 +1032,7 @@ def WipeXBMC():
             if ( not vq ): return False, 0
             title = urllib.quote_plus(vq)
             backup_zip = xbmc.translatePath(os.path.join(mybackuppath,title+'.zip'))
-            exclude_dirs_full =  ["plugin.program.teamexpatwizard", "plugin.video.adrxbmccustombuildswizard"]
+            exclude_dirs_full =  ["plugin.program.expatwiz", "plugin.video.adrxbmccustombuildswizard"]
             exclude_files_full = ["xbmc.log","xbmc.old.log","kodi.log","kodi.old.log",'.DS_Store','.setup_complete','XBMCHelper.conf']
             message_header = "Creating full backup of existing build"
             message1 = "Archiving..."
@@ -1702,7 +1739,7 @@ def FRESHSTART(params):
 def IPCHECK(url='http://www.iplocation.net/',inc=1):
     match=re.compile("<td width='80'>(.+?)</td><td>(.+?)</td><td>(.+?)</td><td>.+?</td><td>(.+?)</td>").findall(net.http_GET(url).content)
     for ip, region, country, isp in match:
-        if inc <2: dialog=xbmcgui.Dialog(); dialog.ok('[COLOR darkgreen]Team eXpat[/COLOR][COLOR gold] Wizard[/COLOR]',"[B][COLOR gold]Your IP Address is: [/COLOR][/B] %s" % ip, '[B][COLOR gold]Your IP is based in: [/COLOR][/B] %s' % country, '[B][COLOR gold]Your Service Provider is:[/COLOR][/B] %s' % isp)
+        if inc <2: dialog=xbmcgui.Dialog(); dialog.ok('[COLOR blue][B]AMO[/B][/COLOR][COLOR green]box[/COLOR][COLOR gold] Wizard[/COLOR]',"[B][COLOR gold]Your IP Address is: [/COLOR][/B] %s" % ip, '[B][COLOR gold]Your IP is based in: [/COLOR][/B] %s' % country, '[B][COLOR gold]Your Service Provider is:[/COLOR][/B] %s' % isp)
         inc=inc+1
 
 ################################
@@ -1713,7 +1750,7 @@ def UPDATEREPO():
     xbmc.executebuiltin( 'UpdateLocalAddons' )
     xbmc.executebuiltin( 'UpdateAddonRepos' )
     dialog = xbmcgui.Dialog()
-    dialog.ok("[COLOR darkgreen]Team eXpat[/COLOR][COLOR gold] Wizard[/COLOR]", '','                                 REFRESH SUCCESSFUL :)', "                          [COLOR yellow]Brought To You By [COLOR blue][B]AMO[/B][/COLOR][COLOR green][B]box[/B][/COLOR][/COLOR]")
+    dialog.ok("[COLOR blue][B]AMO[/B][/COLOR][COLOR green]box[/COLOR][COLOR gold] Wizard[/COLOR]", '','                                 REFRESH SUCCESSFUL :)', "                          [COLOR yellow]Brought To You By [COLOR blue][B]AMO[/B][/COLOR][COLOR green][B]box[/B][/COLOR][/COLOR]")
     return
     
 #def FIXREPOSADDONS(url):
@@ -1857,10 +1894,13 @@ def setView(content, viewType):
         
         
 if mode==None or url==None or len(url)<1:
-        VideoCheck()
+        INDEX()
 
 elif mode==20:
         BUILDMENU()
+		
+elif mode==21:
+        BUILDMENU2()
 
 elif mode==30:
         MAINTENANCE()
@@ -2040,5 +2080,10 @@ elif mode==32:
 elif mode==33:
         DELETETHUMBS()
 
+elif mode==40:
+        APKDOWNMENU()
+		
+elif mode==41:
+        APKDOWNWIZ(name,url,description)
 		
 xbmcplugin.endOfDirectory(int(sys.argv[1]))

@@ -17,14 +17,14 @@
 #  http://www.gnu.org/copyleft/gpl.html
 #
 
-plugin.program.teamexpatwizard xbmc
-plugin.program.teamexpatwizard xbmcgui
-plugin.program.teamexpatwizard xbmcaddon
-plugin.program.teamexpatwizard shutil
+plugin.program.amoboxwiz xbmc
+plugin.program.amoboxwiz xbmcgui
+plugin.program.amoboxwiz xbmcaddon
+plugin.program.amoboxwiz shutil
 
 
 def resetAddon():
-    path = xbmc.translatePath('special://profile/addon_data/plugin.program.teamexpatwizard')
+    path = xbmc.translatePath('special://profile/addon_data/plugin.program.amoboxwiz')
     shutil.rmtree(path)
     
     d = xbmcgui.Dialog()

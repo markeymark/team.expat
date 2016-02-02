@@ -4,7 +4,7 @@ import urllib
 def download(url, dest, dp = None):
     if not dp:
         dp = xbmcgui.DialogProgress()
-        dp.create("[COLOR green]Team eXpat[/COLOR] Wizard","Downloading & Copying Files",' ', ' ')
+        dp.create("[COLOR blue][B]AMO[/B][/COLOR][COLOR green][B]box[/B][/COLOR] Wizard","Downloading & Copying Files",' ', ' ')
     dp.update(0)
     urllib.urlretrieve(url,dest,lambda nb, bs, fs, url=url: _pbhook(nb,bs,fs,url,dp))
  
