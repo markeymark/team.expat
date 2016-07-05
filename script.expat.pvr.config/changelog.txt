@@ -1,3 +1,7 @@
+[COLOR=blue][B]1.0.3[/B][/COLOR]
+
+-No need to enter OS!
+
 [COLOR=blue][B]1.0.2[/B][/COLOR]
 
 -Changed path of XMLTV file. Also added timezone offset natively into config tool.
