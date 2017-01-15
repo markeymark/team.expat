@@ -4,7 +4,7 @@
     <setting id="epgPathType" value="1" />
     <setting id="epgTSOverride" value="false" />
     <setting id="epgTimeShift" value="TIMESHIFT" />
-    <setting id="epgUrl" value="http://is.gd.teapp" />
+    <setting id="epgUrl" value="http://teamexpat.ninja/epg/TeamExpat.xml" />
     <setting id="logoBaseUrl" value="" />
     <setting id="logoFromEpg" value="0" />
     <setting id="logoPath" value="" />

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="script.expat.pvr.config" name="eXpat PVR Config Tool" version="2.1.0" provider-name="bit.ly/AMObox">
+<addon id="script.expat.pvr.config" name="eXpat PVR Config Tool" version="2.0.0" provider-name="bit.ly/AMObox">
     <requires>
         <import addon="pvr.iptvsimple"/>
         <import addon="xbmc.python" version="2.1.0"/>
