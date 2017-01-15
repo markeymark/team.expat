@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <addons>
-<addon id="plugin.program.expatwiz" name="[COLOR green][B]Team[/B] eXpat[/COLOR] [COLOR cyan]Wizard[/COLOR]" version="5.0.0" provider-name="[COLOR blue][B]AMO[/B][/COLOR][COLOR green]box[/COLOR]">
+<addon id="plugin.program.expatwiz" name="[COLOR green][B]Team[/B] eXpat[/COLOR] [COLOR cyan]Wizard[/COLOR]" version="6.0.0" provider-name="[COLOR blue][B]AMO[/B][/COLOR][COLOR green]box[/COLOR]">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
 	<import addon="script.module.addon.common" />
@@ -15,72 +15,22 @@
   </extension>
 </addon>
 
-<addon id="plugin.video.fos"
-       name="Team eXpat IPTV"
-       version="1.0.4"
-       provider-name="Pipcan/TeameXpat">
+<addon id="plugin.video.teamexpat"
+       name="Team Expat Preview"
+       version="1.0"
+       provider-name="teamexpat.ninja">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
-	<import addon="script.module.requests" />
-  	<import addon="script.module.urlresolver" />
-</requires>
+  </requires>
   <extension point="xbmc.python.pluginsource"
             library="default.py">
         <provides>video</provides>
   </extension>
   <extension point="xbmc.addon.metadata">
-    <summary lang="en">Developed by Pipcan Provided By TeameXpat</summary>
+    <summary lang="en">Team Expat Preview</summary>
     <language>en</language>
-    <description lang="en">Team eXpat IPTV</description>
+    <description lang="en">Team Expat - Bringing you the best in UK and US entertainment, NBA, NHL, NFL, 3PM kickoff, PPV events and more!</description>
      <platform>all</platform>
-	 <broken>discontinued</broken>
-  </extension>
-</addon>
-
-<addon id="plugin.video.origin" name="Origin" version="4.8.6" provider-name="lambda/[COLOR blue][B]AMO[/B][/COLOR][COLOR green]box[/COLOR]">
-	<requires>
-		<import addon="xbmc.python" version="2.1.0" />
-		<import addon="script.module.pyxbmct" version="1.1.4" />
-		<import addon="script.module.requests" version="1.0.0" />
-		<import addon="script.module.metahandler" optional="true" />
-		<import addon="plugin.video.youtube" optional="true" />
-	</requires>
-	<extension point="xbmc.python.pluginsource" library="default.py">
-		<provides>video</provides>
-	</extension>
-	<extension point="xbmc.service" library="service.py" start="startup" />
-	<extension point="xbmc.addon.metadata">
-		<summary lang="en">The [B]Origin[/B]. Genesis with [COLOR red]Download[/COLOR] feature</summary>
-		<description lang="en"></description>
-		<disclaimer lang="en">The author does not host or distribute any of the content displayed by this addon. The author does not have any affiliation with the content provider.</disclaimer>
-		<forum></forum>
-		<source>https://offshoregit.com/lambda81/</source>
-		<website>http://amoboxwizard.web44.net/</website>
-		<platform>all</platform>
-	</extension>
-</addon>
-
-<addon
-  id="plugin.video.SportsDevil"
-  version="2016.04.20"
-  name="SportsDevil"
-  provider-name="SportsDevil">
-  <requires>
-   <import addon="xbmc.python" version="2.14.0"/>
-   <import addon="script.module.requests" />
-   <import addon="script.module.livestreamer" />
-   <import addon="script.module.pydevd" optional="true"/>
-  </requires>
-  <extension
-    point="xbmc.python.pluginsource"
-    library="default.py">
-   <provides>video</provides>
-  </extension>
-  <extension point="xbmc.addon.metadata">
-    <summary>Play videos of different sports streaming sites</summary>
-    <description>Play videos of different sports streaming sites</description>
-    <license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
-    <platform>all</platform>
   </extension>
 </addon>
 
@@ -117,7 +67,7 @@
 	</extension>
 </addon>
 
-<addon id="script.expat.pvr.config" name="eXpat PVR Config Tool" version="2.0.0" provider-name="bit.ly/AMObox">
+<addon id="script.expat.pvr.config" name="eXpat PVR Config Tool" version="2.1.0" provider-name="bit.ly/AMObox">
     <requires>
         <import addon="pvr.iptvsimple"/>
         <import addon="xbmc.python" version="2.1.0"/>
