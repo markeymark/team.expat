@@ -84,14 +84,14 @@ def INDEX():
     
 
 def BUILDMENU():
-    link = OPEN_URL('http://pastebin.com/EL1hNMBv').replace('\n','').replace('\r','')
+    link = OPEN_URL('http://pastebin.com/raw/W2MytrTH').replace('\n','').replace('\r','')
     match = re.compile('name="(.+?)".+?rl="(.+?)".+?mg="(.+?)".+?anart="(.+?)".+?escription="(.+?)"').findall(link)
     for name,url,iconimage,fanart,description in match:
         addDir(name,url,90,iconimage,fanart,description)
     setView('movies', 'MAIN')
 	
 def BUILDMENU2():
-    link = OPEN_URL('http://pastebin.com/m6qBji1D').replace('\n','').replace('\r','')
+    link = OPEN_URL('http://pastebin.com/raw/3QdAap5J').replace('\n','').replace('\r','')
     match = re.compile('name="(.+?)".+?rl="(.+?)".+?mg="(.+?)".+?anart="(.+?)".+?escription="(.+?)"').findall(link)
     for name,url,iconimage,fanart,description in match:
         addDir(name,url,90,iconimage,fanart,description)
@@ -115,7 +115,7 @@ def CBTOOLS(id):
     addDir('Additional Tools','url',80,ART+'additionaltools.png',FANART,'')
 
 def APKDOWNMENU():
-    link = OPEN_URL('http://pastebin.com/LLyV25xv').replace('\n','').replace('\r','')
+    link = OPEN_URL('http://pastebin.com/raw/jtmk8zuC').replace('\n','').replace('\r','')
     match = re.compile('name="(.+?)".+?rl="(.+?)".+?mg="(.+?)".+?anart="(.+?)".+?escription="(.+?)"').findall(link)
     for name,url,iconimage,fanart,description in match:
         addDir(name,url,41,iconimage,fanart,description)
